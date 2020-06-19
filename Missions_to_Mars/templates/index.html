@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars today</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+
+    <!--HEADER-->
+    <div class="container">
+        <div class="jumbotron rounded bg-dark text-white">
+            <h1 class="display-4 font-italic">Mars today</h1>
+            <p class="lead my-3">
+                Discover how's doing Mars today.
+            </p>
+            <a href="/scrape" class="btn btn-warning">
+                Get today's report!
+            </a>            
+        </div>
+    </div>
+
+    <!--FEATURED IMAGE-->
+    <div class="text-center">
+        <h2>Featured image</h2>
+        <img src={{mars_info.image}} class="rounded mx-auto" alt="Responsive image">
+    </div>
+
+    <!--LAST NEWS, MARS WEATHER AND MARS FACTS-->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm">
+                <h2>{{mars_info.news_title}}</h2>
+                <p>{{mars_info.news_text}}</p>
+                <div class="card px-2 py-2">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Mars weather
+                        </h5>
+                        <p class="card-text">
+                            {{mars_info.tweet}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <h2>Mars facts</h2>
+                <table class="table">
+                    {{mars_info.table | safe}}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--MARS HEMISPHERES-->
+    <div class="container mt-4">
+        <h2 class="text-center">Mars hemispheres</h2>
+            <div class="row justify-content-center">
+            {% for hem in mars_info.hemispheres %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="{{hem.img_url}}" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-text">{{hem.title}}</h5>
+                        </div>
+                    </div>
+                </div> 
+            {% endfor %}
+            </div>
+    </div>
+    
+</body>
+</html>
